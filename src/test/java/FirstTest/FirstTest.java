@@ -28,29 +28,26 @@ public class FirstTest {
         loginField.sendKeys("innatest");
         System.out.println("введен логин");
 
-
         WebElement passwordField = driver.findElement(By.name("password"));
         passwordField.sendKeys("frvbfr2116");
         System.out.println("введен пароль");
-
 
         WebElement buttonOk = driver.findElement(By.xpath(".//*[@id=\"app\"]/div/div[1]/div[2]/form/div[3]/div/button"));
         buttonOk.click();
         System.out.println("выполнен вход");
 
-        WebElement profileUser = driver.findElement(By.cssSelector("П.login-button__user"));
-        String mailUser = profileUser.getText();
-        Assert.assertEquals("innatest@rambler.ru", mailUser);
+        WebElement profileUser = driver.findElement(By.className("Profile-email-OI"));
+        Assert.assertEquals("innatest@rambler.ru", profileUser.getText());
+        System.out.println("выполнена идентификация профиля");
     }
 
-    //@AfterClass
-      // public static void tearDown() {
-       //WebElement menuUser = driver.findElement(By.cssSelector(".login-button__menu-icon"));
-       //menuUser.click();
-    //   WebElement logoutButton = driver.findElement(By.id("login__logout"));
-      // logoutButton.click();
-      // driver.quit();
-    //}
-
+    @AfterClass
+    public static void tearDown() {
+        WebElement logoutButton = driver.findElement(By.className("Profile-exit-2_"));
+        logoutButton.click();
+        System.out.println("автотест успешно завершен");
+        driver.quit();
+    }
 }
+
 
